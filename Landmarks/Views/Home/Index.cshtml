@@ -1,0 +1,46 @@
+﻿@model IEnumerable<LandMarkBLL.DTO.LandmarkSearchDTO>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form>
+    <h3>Search</h3>
+    <label for="Name" class="form-label">Name</label>
+    <input type="text" id="Name" class="form-control">
+    <div class="form-text">
+    </div>
+    <label for="Type" class="form-label">Type</label>
+    <input type="text" id="Type" class="form-control">
+    <div class="form-text">
+        <label for="Area" class="form-label">Area</label>
+        <input type="text" id="Area" class="form-control">
+        <div class="form-text">
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var m in Model)
+        {
+            <div class="col-sm-6 add-margin" >
+                <div class="card">
+                    <div class="card-body">
+                        <img src="~/images/@m.PicturePath" class="card-img-top" alt="...">
+                        <h5 class="card-title">@m.Name</h5>
+                        <p class="card-text">@Html.Raw(m.Description)</p>
+                        @Html.ActionLink("View", "SinglePlace", "Home", new { id = m.ID }, htmlAttributes: new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        }
+        <style>
+            .card-img-top{
+                max-height: 500px;
+                max-width: 500px;
+            }
+
+            .add-margin{
+                margin-top: 30px;
+            }
+        </style>
+    </div>
+</form>
