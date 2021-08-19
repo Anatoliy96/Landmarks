@@ -1,0 +1,56 @@
+﻿@model LandMarkBLL.DTO.LandmarkSearchDTO
+
+@using (Html.BeginForm("UpdateLandMark", "ManageLandmarks", FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+{
+    <div class="mb-3">
+        <label for="ID" class="form-label">ID</label>
+        <input  type="hidden" class="form-control" name="ID" value="@Model.ID" id="InputID">
+    </div>
+
+    <label for="picturepath">Upload Image:</label>
+    <input type="file" accept=".gif,.jpg,.jpeg,.png,.bmp" name="picturepath" id="picturepath" style="width: 100%;" value="@Model.PicturePath" />
+    <div class="mb-3">
+        <label for="InputName" class="form-label">Name</label>
+        <input type="text" class="form-control" id="InputName" name="name" value="@Model.Name" aria-describedby="NameHelp">
+    </div>
+    <div class="mb-3">
+        <label for="InputArea" class="form-label">Area</label>
+        <input type="text" class="form-control" name="area" value="@Model.Area" id="InputArea">
+    </div>
+    <div class="mb-3">
+        <label for="InputDescription" class="form-label">Description</label>
+        <input type="text" class="form-control" name="description" value="@Model.Description" id="InputDescription">
+    </div>
+    <div class="mb-3">
+        <label for="InputLatitude" class="form-label">Latitude</label>
+        <input type="number" class="form-control" name="latitude" value="@Model.Latitude" id="InputLatitude">
+    </div>
+    <div class="mb-3">
+        <label for="InputLongtitude" class="form-label">Longtitude</label>
+        <input type="number" class="form-control" name="longtitude" value="@Model.Longtitude" id="InputLongtitude">
+    </div>
+    <div class="mb-3">
+        <label for="InputAttendance" class="form-label">Attendance</label>
+        <input type="number" class="form-control" name="attendance" value="@Model.Attendance" id="InputAttendance">
+    </div>
+    <div class="mb-3">
+        <label for="InputAccesability" class="form-label">Accesability</label>
+        <input type="text" class="form-control" name="accesability" value="@Model.Accesability" id="InputAccesability">
+    </div>
+    <div class="mb-3">
+        <label for="InputHistory" class="form-label">History</label>
+        <input type="text" class="form-control" name="history" value="@Model.History" id="InputHistory">
+    </div>
+    <div class="mb-3">
+        <label for="InputType" class="form-label">Type</label>
+        <input type="text" class="form-control" name="type" value="@Model.Type" id="InputType">
+    </div>
+    <div class="mb-3">
+        <label for="InputTerrainID" class="form-label">TerrainID</label>
+        <input type="number" class="form-control" name="terrainid" value="@Model.TerrainID" id="InputTerrainID">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+
+}
+

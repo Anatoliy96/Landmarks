@@ -73,6 +73,7 @@ namespace LandMarkBLL
         }
 
         public void UpdateLandMark(
+            int ID,
             string Name,
             string Area,
             string Description,
@@ -87,6 +88,7 @@ namespace LandMarkBLL
         {
             Landmark landmark = new Landmark();
 
+            landmark.ID = ID;
             landmark.Name = Name;
             landmark.Area = Area;
             landmark.Description = Description;
@@ -101,6 +103,13 @@ namespace LandMarkBLL
 
             LandmarkDAO landmarkDAO = new LandmarkDAO();
             landmarkDAO.Update(landmark);
+        }
+
+        public void DeleteLandMark(int ID)
+        {
+            LandmarkDAO dao = new LandmarkDAO();
+
+            dao.Delete(ID);
         }
     }
 }

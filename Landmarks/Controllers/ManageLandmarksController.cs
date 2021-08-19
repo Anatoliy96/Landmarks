@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using LandMarkBLL.DTO;
+using LandmarkDAL.DAO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -63,20 +65,69 @@ namespace LandmarksPresentation.Controllers
             return View("Index");
         }
 
-        //public IActionResult UpdateLandMark(
-        //    string name,
-        //    string area,
-        //    string description,
-        //    double latitude,
-        //    double longtitude,
-        //    int attendance,
-        //    string accesability,
-        //    string history,
-        //    string type,
-        //    IFormFile picturepath,
-        //    int terrainid)
-        //{
+        public IActionResult UpdateLandMark(
+            int ID,
+            string name,
+            string area,
+            string description,
+            double latitude,
+            double longtitude,
+            int attendance,
+            string accesability,
+            string history,
+            string type,
+            IFormFile picturepath,
+            int terrainid)
+        {
+            LandMarkBLL.LandmarkSearchBLO searchBLO = new LandMarkBLL.LandmarkSearchBLO();
+            if (name == null)
+            {
+                return View(searchBLO.Get(terrainid));
+            }
+            if (picturepath == null)
+            {
+                LandmarkSearchDTO blo = searchBLO.Get(terrainid);
+                searchBLO.UpdateLandMark(
+                        ID,
+                        name,
+                        area,
+                        description,
+                        latitude,
+                        longtitude,
+                        attendance,
+                        accesability,
+                        history,
+                        type,
+                        blo.PicturePath,
+                        terrainid);
+            }
+            else
+            {
+                searchBLO.UpdateLandMark(
+                        ID,
+                        name,
+                        area,
+                        description,
+                        latitude,
+                        longtitude,
+                        attendance,
+                        accesability,
+                        history,
+                        type,
+                        picturepath.FileName,
+                        terrainid);
+            }
+            
 
-        //}
+            return View("index", "Home");
+        }
+
+       public IActionResult DeleteLandMark(int ID)
+        {
+            LandMarkBLL.LandmarkSearchBLO blo = new LandMarkBLL.LandmarkSearchBLO();
+            blo.DeleteLandMark(ID);
+
+            return RedirectToAction("index", "Home");
+        }
     }
 }

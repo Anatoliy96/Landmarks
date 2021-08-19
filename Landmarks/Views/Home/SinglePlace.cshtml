@@ -40,3 +40,6 @@
 
 <h3>Area</h3>
 @Html.Raw(Model.Area)
+
+@Html.ActionLink("Update", "UpdateLandMark","ManageLandmarks", new { terrainid = Model.TerrainID}) ||
+@Html.ActionLink("Delete", "DeleteLandMark","ManageLandmarks", new { id = Model.ID})

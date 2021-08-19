@@ -26,7 +26,14 @@
                     <div class="card-body">
                         <img src="~/images/@m.PicturePath" class="card-img-top" alt="...">
                         <h5 class="card-title">@m.Name</h5>
-                        <p class="card-text">@Html.Raw(m.Description)</p>
+                        @if(m.Description.Length > 500)
+                {
+                    <p class="card-text">@Html.Raw(m.Description.Substring(0, 500))</p>
+                        }
+                        else
+                        {
+                    <p class="card-text">@Html.Raw(m.Description)</p> 
+                        }
                         @Html.ActionLink("View", "SinglePlace", "Home", new { id = m.ID }, htmlAttributes: new { @class = "btn btn-primary" })
                     </div>
                 </div>
