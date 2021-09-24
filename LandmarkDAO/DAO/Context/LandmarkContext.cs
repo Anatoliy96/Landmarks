@@ -1,4 +1,7 @@
-﻿using LandmarkDAL.Models;
+﻿
+using LandmarkDAL.Models;
+using LandmarkDAL.Models.Users;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +9,7 @@ using System.Text;
 
 namespace LandmarkDAL.DAO.Context
 {
-    public class LandmarkContext : DbContext
+    public class LandmarkContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         public LandmarkContext(DbContextOptions<LandmarkContext> options)
            : base(options)
@@ -19,7 +22,8 @@ namespace LandmarkDAL.DAO.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=localhost;database=Landmarks;user=root;password=root");
+            optionsBuilder.UseMySQL("server=localhost;database=Landmarks;user=root;password=root", b => b.MigrationsAssembly("LandmarksPresentation"));
+            
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -28,8 +32,6 @@ namespace LandmarkDAL.DAO.Context
             base.OnModelCreating(builder);
 
         }
-
-        internal DbSet<Users> Users { get; set; }
 
         internal DbSet<Landmark> LandMark { get; set; }
 

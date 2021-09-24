@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandmarksPresentation", "Landmarks\LandmarksPresentation.csproj", "{8E497C04-BC66-49FC-970D-AEE270047116}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandmarkDAL", "LandmarkDAO\LandmarkDAL.csproj", "{8D50C763-0401-437E-B844-D83A7AC16A66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandmarkDAL", "LandmarkDAO\LandmarkDAL.csproj", "{8D50C763-0401-437E-B844-D83A7AC16A66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandMarkBLL", "LandMarkBLL\LandMarkBLL.csproj", "{3437FC1D-DF90-4CC0-A80C-E0C8E27D9D94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandMarkBLL", "LandMarkBLL\LandMarkBLL.csproj", "{3437FC1D-DF90-4CC0-A80C-E0C8E27D9D94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

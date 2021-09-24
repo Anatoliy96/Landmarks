@@ -19,6 +19,17 @@ namespace Landmarks.Controllers
             _logger = logger;
         }
 
+        public IActionResult Auth()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("UserLogin", "Login");
+            }
+        }
         public IActionResult Index()
         {
             LandmarkSearchBLO blo = new LandmarkSearchBLO();

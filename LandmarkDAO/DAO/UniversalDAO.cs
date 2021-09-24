@@ -6,19 +6,20 @@ using LandmarkDAL.DAO.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
+
 namespace LandmarkDAL.DAO
 {
-   public class UniversalDAO<TEntity>
+   public class UniversalDAO<TEntity> : IDAO<TEntity>
         where TEntity : Common
     {
-        DbContext context;
+        LandmarkContext context;
         public UniversalDAO()
             : this(new LandmarkContext())
         {
 
         }
 
-        public UniversalDAO(DbContext Context)
+        public UniversalDAO(LandmarkContext Context)
         {
             this.context = Context;
         }
@@ -54,6 +55,10 @@ namespace LandmarkDAL.DAO
             }
         }
 
+        public TEntity GetByName(string username)
+        {
+            return context.Set<TEntity>().Find(username);
+        }
         public void Update(TEntity Item)
         {
             context.Set<TEntity>().Update(Item);

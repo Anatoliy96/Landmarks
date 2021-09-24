@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using MySql.EntityFrameworkCore.Metadata;
 
-namespace LandmarkDAL.Migrations
+namespace LandmarksPresentation.Migrations
 {
-    public partial class init : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,13 +13,17 @@ namespace LandmarkDAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Area = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Latitude = table.Column<double>(type: "double", nullable: false),
                     Longtitude = table.Column<double>(type: "double", nullable: false),
                     Attendance = table.Column<int>(type: "int", nullable: false),
                     Accesability = table.Column<string>(type: "text", nullable: true),
                     History = table.Column<string>(type: "text", nullable: true),
-                    Type = table.Column<string>(type: "text", nullable: true)
+                    Type = table.Column<string>(type: "text", nullable: true),
+                    PicturePath = table.Column<string>(type: "text", nullable: true),
+                    TerrainID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,23 +43,6 @@ namespace LandmarkDAL.Migrations
                 {
                     table.PrimaryKey("PK_Terrain", x => x.ID);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    UserName = table.Column<string>(type: "text", nullable: true),
-                    Password = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: true),
-                    City = table.Column<string>(type: "text", nullable: true),
-                    BirthDate = table.Column<DateTime>(type: "datetime", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.ID);
-                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -66,9 +52,6 @@ namespace LandmarkDAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Terrain");
-
-            migrationBuilder.DropTable(
-                name: "Users");
         }
     }
 }
