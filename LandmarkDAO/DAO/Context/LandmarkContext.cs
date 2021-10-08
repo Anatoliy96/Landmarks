@@ -1,7 +1,6 @@
 ﻿
 using LandmarkDAL.Models;
 using LandmarkDAL.Models.Users;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Text;
 
 namespace LandmarkDAL.DAO.Context
 {
-    public class LandmarkContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
+    public class LandmarkContext : DbContext
     {
         public LandmarkContext(DbContextOptions<LandmarkContext> options)
            : base(options)
@@ -33,8 +32,9 @@ namespace LandmarkDAL.DAO.Context
 
         }
 
-        internal DbSet<Landmark> LandMark { get; set; }
+        public DbSet<Landmark> LandMark { get; set; }
 
         internal DbSet<Terrain> Terrain { get; set; }
+        public DbSet<Users> Users { get; set; }
     }
 }

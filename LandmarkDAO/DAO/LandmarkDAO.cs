@@ -9,6 +9,13 @@ namespace LandmarkDAL.DAO
 {
    public class LandmarkDAO : UniversalDAO<Landmark>
     {
-                
+        public List<Landmark> FilterByName(string Search)
+        {
+
+            {
+                LandmarkContext context = new LandmarkContext();
+                return context.LandMark.Where(l => l.Name.ToLower().Contains(Search)).ToList();
+            }
+        }
     }
 }

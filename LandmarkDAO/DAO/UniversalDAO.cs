@@ -55,10 +55,11 @@ namespace LandmarkDAL.DAO
             }
         }
 
-        public TEntity GetByName(string username)
+        public TEntity GetByName(string name)
         {
-            return context.Set<TEntity>().Find(username);
+            return context.Set<TEntity>().Find(name);
         }
+
         public void Update(TEntity Item)
         {
             context.Set<TEntity>().Update(Item);

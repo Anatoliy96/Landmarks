@@ -8,15 +8,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LandmarksPresentation.Migrations
 {
     [DbContext(typeof(LandmarkContext))]
-    [Migration("20210913082619_test")]
-    partial class test
+    [Migration("20211001102425_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.9");
+                .HasAnnotation("ProductVersion", "5.0.5");
 
             modelBuilder.Entity("LandmarkDAL.Models.Landmark", b =>
                 {
@@ -77,6 +77,29 @@ namespace LandmarksPresentation.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Terrain");
+                });
+
+            modelBuilder.Entity("LandmarkDAL.Models.Users.Users", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConfirmPassword")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

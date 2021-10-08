@@ -1,14 +1,12 @@
 ﻿@model LandmarkDAL.Models.Users.LoginModel
 
 @{
-    ViewData["Title"] = "Register";
-    ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Login";
 }
 
-@using (Html.BeginForm("Login", "Authenticate"))
+@using (Html.BeginForm("Login", "Account"))
 {
-    <form>
+    <form action="action_page.php" method="post">
         <div class="imgcontainer">
             <img src="img_avatar2.png" alt="Avatar" class="avatar">
         </div>
@@ -19,6 +17,9 @@
 
             <label for="Password"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="Password" required>
+
+            <label for="ConfirmPassword"><b>ConfirmPassword</b></label>
+            <input type="password" placeholder="Enter Password" name="ConfirmPassword" required>
 
             <button type="submit">Login</button>
             <label>

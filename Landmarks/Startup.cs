@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using LandmarkDAL.Models.Users;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
+
 
 namespace Landmarks
 {
@@ -29,34 +28,19 @@ namespace Landmarks
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication("CookieAuthentication")
+                 .AddCookie("CookieAuthentication", config =>
+                 {
+                     config.Cookie.Name = "UserLoginCookie";
+                     config.LoginPath = "/Account/Login";
+                 });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddDbContext<LandmarkDAL.DAO.Context.LandmarkContext>(options => options.UseMySQL(Configuration.GetConnectionString("ConnStr")));
+            services.AddDbContext<LandmarkDAL.DAO.Context.LandmarkContext>(options => {
+                options.UseMySQL("Server=127.0.0.1;Database=landmarks;Uid=root;Pwd=root");
+            });
 
-            services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<LandmarkDAL.DAO.Context.LandmarkContext>()
-                .AddDefaultTokenProviders();
-
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-
-            .AddJwtBearer(options =>
-             {
-                 options.SaveToken = true;
-                 options.RequireHttpsMetadata = false;
-                 options.TokenValidationParameters = new TokenValidationParameters()
-                 {
-                     ValidateIssuer = true,
-                     ValidateAudience = true,
-                     ValidAudience = Configuration["JWT:ValidAudience"],
-                     ValidIssuer = Configuration["JWT:ValidIssuer"],
-                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
-                 };
-             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +56,18 @@ namespace Landmarks
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            //app.UseStatusCodePages(async context => {
+            //    var request = context.HttpContext.Request;
+            //    var response = context.HttpContext.Response;
+
+            //    if (response.StatusCode == (int)HttpStatusCode.Unauthorized)
+            //    // you may also check requests path to do this only for specific methods       
+            //    // && request.Path.Value.StartsWith("/specificPath")
+
+            //    {
+            //        response.Redirect("/Authenticate/Login");
+            //       }
+            //});
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<LandmarkDAL.Models.Landmark>
+
+
+<h1>ViewFilteredLandmarks</h1>
+
+<div class="row">
+    @foreach (var m in Model)
+    {
+        <div class="col-sm-6 add-margin">
+            <div class="card">
+                <div class="card-body">
+                    <img src="~/images/@m.PicturePath" class="card-img-top" alt="...">
+                    <h5 class="card-title">@m.Name</h5>
+                    @if (m.Description.Length > 500)
+                    {
+                        <p class="card-text">@Html.Raw(m.Description.Substring(0, 500))</p>
+                    }
+                    else
+                    {
+                        <p class="card-text">@Html.Raw(m.Description)</p>
+                    }
+                    @Html.ActionLink("View", "SinglePlace", "Home", new { id = m.ID }, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

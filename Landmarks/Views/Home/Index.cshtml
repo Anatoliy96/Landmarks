@@ -3,21 +3,27 @@
     ViewData["Title"] = "Home Page";
 }
 
-<form>
-    <h3>Search</h3>
-    <label for="Name" class="form-label">Name</label>
-    <input type="text" id="Name" class="form-control">
-    <div class="form-text">
-    </div>
-    <label for="Type" class="form-label">Type</label>
-    <input type="text" id="Type" class="form-control">
-    <div class="form-text">
-        <label for="Area" class="form-label">Area</label>
-        <input type="text" id="Area" class="form-control">
-        <div class="form-text">
-        </div>
-    </div>
 
+    <h3>Search</h3>
+    <div>
+        @using (Html.BeginForm("SearchLandmarkByName", "Home", FormMethod.Get))
+        {
+            <label for="Search" class="form-label">Name</label>
+            <input type="text" id="Search" name="search" class="form-control">
+            <div class="form-text">
+            </div>
+            <label for="Type" class="form-label">Type</label>
+            <input type="text" id="Type" class="form-control">
+            <div class="form-text">
+                <label for="Area" class="form-label">Area</label>
+                <input type="text" id="Area" class="form-control">
+                <input type="submit" value="search" />
+                <div class="form-text">
+                </div>
+            </div>
+        }
+    </div>
+   
     <div class="row">
         @foreach (var m in Model)
         {
@@ -50,4 +56,3 @@
             }
         </style>
     </div>
-</form>

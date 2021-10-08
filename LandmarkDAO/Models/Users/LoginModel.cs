@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace LandmarkDAL.Models.Users
 {
-    public class LoginModel : ApplicationUser
+  public class LoginModel : Users
     {
-        [Required(ErrorMessage = "User Name is required")]  
-        public string Username { get; set; }
+        [Required(ErrorMessage = "User Name is required")]
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
-        public string Password { get; set; }
+        public string UserPassword { get; set; }
     }
 }

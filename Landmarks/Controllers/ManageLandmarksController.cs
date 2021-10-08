@@ -5,12 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using LandMarkBLL.DTO;
 using LandmarkDAL.DAO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LandmarksPresentation.Controllers
 {
+    [Authorize]
     public class ManageLandmarksController : Controller
     {
         [Obsolete]

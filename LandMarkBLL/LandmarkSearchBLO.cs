@@ -111,5 +111,32 @@ namespace LandMarkBLL
 
             dao.Delete(ID);
         }
+
+        private int CountAppearances(string Text, string[] words)
+        {
+            int count = 0;
+            foreach(string word in words)
+            {
+                if (Text.Trim().ToLower().Contains(word.Trim().ToLower()))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public List<Landmark> FindByName(string Name)
+        {
+            // търсиш спрямо това колко от думите в Name съвпадат със записа в базата
+            LandmarkDAO dao = new LandmarkDAO();
+            string[] words = Name.Trim().Split(' ');
+            List<Landmark> landmarks = dao.GetAll()
+                .Where(l => CountAppearances(l.Name, words) > 0)
+                .OrderByDescending(l => CountAppearances(l.Name, words))
+                .ToList();
+
+            return landmarks;
+        }
     }
 }

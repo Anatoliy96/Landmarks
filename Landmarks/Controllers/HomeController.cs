@@ -7,11 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Landmarks.Models;
 using LandMarkBLL;
+using Microsoft.AspNetCore.Authorization;
+using static LandMarkBLL.LandmarkSearchBLO;
+using LandmarkDAL.DAO.Context;
 
 namespace Landmarks.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+       
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -27,9 +32,10 @@ namespace Landmarks.Controllers
             }
             else
             {
-                return RedirectToAction("UserLogin", "Login");
+                return RedirectToAction("Login", "Account");
             }
         }
+        
         public IActionResult Index()
         {
             LandmarkSearchBLO blo = new LandmarkSearchBLO();
@@ -40,6 +46,13 @@ namespace Landmarks.Controllers
         {
             LandmarkSearchBLO landmarkSearchBLO = new LandmarkSearchBLO();
             return View(landmarkSearchBLO.Get(ID));
+        }
+
+       public IActionResult SearchLandmarkByName(string search)
+        {
+            LandmarkSearchBLO blo = new LandmarkSearchBLO();
+            
+            return View("ViewFilteredLandmarks", blo.FindByName(search));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
