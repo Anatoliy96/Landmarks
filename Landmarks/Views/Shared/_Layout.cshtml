@@ -6,33 +6,67 @@
     <title>@ViewData["Title"] - Landmarks</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    @if (IsSectionDefined("AdditionalCss"))
+    {
+        @RenderSection("AdditionalCss", required: false)
+    }
 </head>
 <body>
     <header>
         @if (User.Identity.IsAuthenticated)
         {
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Landmarks</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="ManageLandmarks" asp-action="Index">Add Landmark</a>
-                                </li>
-                            
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+           <style>
 
-                        </ul>
-                        @Html.Partial("_LoginPartial")
-                    </div>
+               .mb-3{
+                   margin-bottom: 0px !important;
+               }
+               .navbar-expand-sm {
+                   background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
+               }
+           </style>
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Landmarks</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ManageLandmarks" asp-action="Index">Add Landmark</a>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
+                <div>
+                    @using (Html.BeginForm("SearchLandmarkByName", "Home", FormMethod.Get, new { @class = "search-form" }))
+                    {
+                        <input type="text" id="Search" placeholder="Enter landmark name" name="search" class="form-control">
+                        <input type="submit" id="btn" value="search" />
+                    }
+                    <style>
+                        .search-form {
+                            width: 300px;
+                        }
+
+                        #Search {
+                            width: 200px;
+                            float: left;
+                        }
+
+                        #btn {
+                            position: absolute;
+                            margin-left: 25px;
+                            margin-top: 4px;
+                        }
+                    </style>
+                </div>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </nav>
         }
     </header>
     <div class="container">
@@ -52,3 +86,5 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+

@@ -9,13 +9,11 @@
         </ul>
     }
 }
-else
-{
-<ul class="toprightnavbar">
-    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink"})</li>
-    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-</ul>
 
-}
+<style>
+    .nav navbar-nav navbar-right {
+        text-align: right !important;
+    }
+</style>
 
 

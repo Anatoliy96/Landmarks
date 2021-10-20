@@ -7,6 +7,7 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -27,7 +28,9 @@ a {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 @media (min-width: 768px) {
   html {
@@ -47,20 +50,17 @@ html {
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #222D32;
 }
 .footer {
   position: absolute;
