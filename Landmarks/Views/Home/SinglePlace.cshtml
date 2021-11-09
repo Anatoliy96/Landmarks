@@ -50,7 +50,7 @@
 </style>
 
 <div>
-    <input type="button" class="btn btn-update" value="Update" onclick="@("window.location.href='" + @Url.Action("UpdateLandMark", "ManageLandmarks") + "'");" />
+    <input type="button" class="btn btn-update" value="Update" onclick="@("window.location.href='" + @Url.Action("UpdateLandMark", "ManageLandmarks") + "?terrainid=" + Model.ID + "'");" />
     <input type="button" class="btn btn-delete" value="Delete" onclick="@("window.location.href='" + @Url.Action("DeleteLandMark", "ManageLandmarks") + "'");" />
 </div>
 

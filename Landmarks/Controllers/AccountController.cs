@@ -1,7 +1,9 @@
 ﻿using LandMarkBLL;
+using LandMarkBLL.EmailOperations;
 using LandmarkDAL.Models.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,13 +71,26 @@ namespace LandmarksPresentation.Controllers
             }
             else
             {
-                UserBLL userBLL = new UserBLL();
-                userBLL.RegisterUser(
-                    userBLL.Username = model.Username,
-                    userBLL.Password = model.Password,
-                    userBLL.ConfirmPassword = model.ConfirmPassword);
+                RegisterUser registerUser = new RegisterUser();
+                registerUser.InitialRegistration(model.Username, model.Email, model.Password);
             }
             return RedirectToAction("Login","Account");
+        }
+
+        public IActionResult ConfirmUser(string Token)
+        {
+            TokenBLL tokenBLL = new TokenBLL();
+            try
+            {
+                tokenBLL.ConfirmToken(Token);
+                ViewBag.Confirmed = true;
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Confirmed = false; 
+            }
+
+            return View();
         }
     }
 }

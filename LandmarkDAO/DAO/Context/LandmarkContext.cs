@@ -36,5 +36,7 @@ namespace LandmarkDAL.DAO.Context
 
         internal DbSet<Terrain> Terrain { get; set; }
         public DbSet<Users> Users { get; set; }
+
+        public DbSet<RegisterTokens> Tokens { get; set; }
     }
 }

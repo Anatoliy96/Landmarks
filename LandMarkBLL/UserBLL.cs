@@ -37,17 +37,21 @@ namespace LandMarkBLL
         public void RegisterUser(
             string UserName,
             string Password,
-            string ConfirmPassword)
+            string ConfirmPassword,
+            string Email)
         {
             Users user = new Users();
-
             user.Username = UserName;
             user.Password = PasswordHash.Hash(Password);
-            user.ConfirmPassword = PasswordHash.Hash(ConfirmPassword);
-            
+            user.ConfirmPassword = PasswordHash.Hash(Password);
+            user.Email = Email;
 
             UsersDAO usersDAO = new UsersDAO();
             usersDAO.Insert(user);
+        }
+        public void Email_conformation()
+        {
+
         }
     }
 }

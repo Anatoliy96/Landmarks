@@ -1,15 +1,15 @@
 ﻿@model LandMarkBLL.DTO.LandmarkSearchDTO
 
 @using (Html.BeginForm("UpdateLandMark", "ManageLandmarks", FormMethod.Post,
-                        new { enctype = "multipart/form-data" }))
+                       new { enctype = "multipart/form-data" }))
 {
     <div class="mb-3">
-        <label for="ID" class="form-label">ID</label>
-        <input  type="hidden" class="form-control" name="ID" value="@Model.ID" id="InputID">
+        <label for="ID" hidden class="form-label">ID</label>
+        <input type="hidden" class="form-control" name="ID" value="@Model.ID" id="InputID">
     </div>
-
     <label for="picturepath">Upload Image:</label>
     <input type="file" accept=".gif,.jpg,.jpeg,.png,.bmp" name="picturepath" id="picturepath" style="width: 100%;" value="@Model.PicturePath" />
+
     <div class="mb-3">
         <label for="InputName" class="form-label">Name</label>
         <input type="text" class="form-control" id="InputName" name="name" value="@Model.Name" aria-describedby="NameHelp">
@@ -53,4 +53,50 @@
     <button type="submit" class="btn btn-primary">Update</button>
 
 }
+
+<style>
+    .pb-3 {
+        top: 50%;
+        left: 50%;
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border: none;
+        outline: none;
+        background: #383d41;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #03e9f4;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        letter-spacing: 4px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
+    }
+
+    h1 {
+        padding: 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    .form-label {
+        top: 0;
+        left: 0;
+        padding: 5px 0;
+        font-size: 16px;
+        color: #fff;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    .btn-primary {
+        margin-top: 10px;
+    }
+</style>
+
 

@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using LandMarkBLL;
+using LandmarkDAL.Models.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,7 +43,6 @@ namespace Landmarks
             services.AddDbContext<LandmarkDAL.DAO.Context.LandmarkContext>(options => {
                 options.UseMySQL("Server=127.0.0.1;Database=landmarks;Uid=root;Pwd=root");
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,18 +58,16 @@ namespace Landmarks
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            //app.UseStatusCodePages(async context => {
-            //    var request = context.HttpContext.Request;
-            //    var response = context.HttpContext.Response;
+        //    var builder = new ConfigurationBuilder()
+        //.AddJsonFile("appsettings.json");
+        //    var config = builder.Build();
 
-            //    if (response.StatusCode == (int)HttpStatusCode.Unauthorized)
-            //    // you may also check requests path to do this only for specific methods       
-            //    // && request.Path.Value.StartsWith("/specificPath")
-
-            //    {
-            //        response.Redirect("/Authenticate/Login");
-            //       }
-            //});
+        //    var smtpClient = new SmtpClient(config["Smtp:Host"])
+        //    {
+        //        Port = int.Parse(config["Smtp:Port"]),
+        //        Credentials = new NetworkCredential(config["Smtp:Username"], config["Smtp:Password"]),
+        //        EnableSsl = true,
+        //    };
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

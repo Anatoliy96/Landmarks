@@ -3,14 +3,16 @@ using System;
 using LandmarkDAL.DAO.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LandmarksPresentation.Migrations
 {
     [DbContext(typeof(LandmarkContext))]
-    partial class LandmarkContextModelSnapshot : ModelSnapshot
+    [Migration("20211105075426_tokens")]
+    partial class tokens
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,7 +86,7 @@ namespace LandmarksPresentation.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Confirmed")
+                    b.Property<DateTime>("Confirmed")
                         .HasColumnType("datetime");
 
                     b.Property<DateTime>("Generated_token")

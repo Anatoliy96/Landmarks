@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - Landmarks</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     @if (IsSectionDefined("AdditionalCss"))
     {
         @RenderSection("AdditionalCss", required: false)
@@ -44,23 +46,32 @@
                 <div>
                     @using (Html.BeginForm("SearchLandmarkByName", "Home", FormMethod.Get, new { @class = "search-form" }))
                     {
-                        <input type="text" id="Search" placeholder="Enter landmark name" name="search" class="form-control">
-                        <input type="submit" id="btn" value="search" />
+                    <div class="input-group">
+                        <input type="text" id="Search" name="search" class="form-control border-end-0 border rounded-pill ms-n5" placeholder="Enter landmark name">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary border-bottom-0 border rounded-pill ms-n5" type="submit" value="search">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                     }
+
                     <style>
-                        .search-form {
-                            width: 300px;
+                        .ms-n5 {
+                            /*padding-left: 2.375rem;*/
+                            margin-left: -40px;
                         }
 
-                        #Search {
-                            width: 200px;
-                            float: left;
-                        }
-
-                        #btn {
+                        .has-search .form-control-feedback {
                             position: absolute;
-                            margin-left: 25px;
-                            margin-top: 4px;
+                            z-index: 2;
+                            display: block;
+                            width: 2.375rem;
+                            height: 2.375rem;
+                            line-height: 2.375rem;
+                            text-align: center;
+                            pointer-events: none;
+                            color: #aaa;
                         }
                     </style>
                 </div>

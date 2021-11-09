@@ -55,11 +55,20 @@ namespace LandmarkDAL.DAO
             }
         }
 
+        public DbSet<TEntity> GetDbSet()
+        {
+            return context.Set<TEntity>();
+        }
+
         public TEntity GetByName(string name)
         {
             return context.Set<TEntity>().Find(name);
         }
 
+        public TEntity GetRoleByName(string roleName)
+        {
+            return context.Set<TEntity>().Find(roleName);
+        }
         public void Update(TEntity Item)
         {
             context.Set<TEntity>().Update(Item);

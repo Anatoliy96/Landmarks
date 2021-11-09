@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,10 @@ namespace LandmarkDAL.Models.Users
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Email is already registered")]
+        public string Email{ get; set; }
+        [Required]
+        public bool Confirmed { get; set; }
         [Required]
         [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]

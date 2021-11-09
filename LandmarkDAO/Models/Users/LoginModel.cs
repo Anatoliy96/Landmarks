@@ -14,5 +14,6 @@ namespace LandmarkDAL.Models.Users
 
         [Required(ErrorMessage = "Password is required")]
         public string UserPassword { get; set; }
+       
     }
 }

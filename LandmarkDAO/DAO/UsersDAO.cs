@@ -9,6 +9,9 @@ namespace LandmarkDAL.DAO
 {
    public class UsersDAO : UniversalDAO<Users>
     {
-
+        public Users GetByUserName(string UserName)
+        {
+            return GetDbSet().FirstOrDefault(u => u.Username == UserName);
+        }
     }
 }
