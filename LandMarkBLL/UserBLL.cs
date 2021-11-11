@@ -48,10 +48,13 @@ namespace LandMarkBLL
 
             UsersDAO usersDAO = new UsersDAO();
             usersDAO.Insert(user);
-        }
-        public void Email_conformation()
-        {
 
+            UserRoleMapping url = new UserRoleMapping();
+            url.RoleID = 3;
+            url.UserID = user.ID;
+
+            UserRoleMappingsDAO urlDAO = new UserRoleMappingsDAO();
+            urlDAO.Insert(url);
         }
     }
 }

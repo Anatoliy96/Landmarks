@@ -12,7 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LandmarksPresentation.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "SuperAdmin,Admin")]
+
     public class ManageLandmarksController : Controller
     {
         [Obsolete]

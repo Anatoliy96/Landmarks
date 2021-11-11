@@ -38,5 +38,9 @@ namespace LandmarkDAL.DAO.Context
         public DbSet<Users> Users { get; set; }
 
         public DbSet<RegisterTokens> Tokens { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+
+        public DbSet<UserRoleMapping> Mappings { get; set; }
     }
 }

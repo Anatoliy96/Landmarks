@@ -31,9 +31,9 @@ namespace LandmarksPresentation.Controllers
             {
                 var userClaims = new List<Claim>()
                 {
-                new Claim(ClaimTypes.Name, users.Username),
-                new Claim(ClaimTypes.Email, "Anatoliy@test.com"),
-                 };
+                    new Claim(ClaimTypes.Name, users.Username),
+                    new Claim(ClaimTypes.Email, "Anatoliy@test.com"),
+                };
 
                 var AnatoliyIdentity = new ClaimsIdentity(userClaims, "User Identity");
 
