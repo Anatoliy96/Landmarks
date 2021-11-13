@@ -48,11 +48,13 @@
         max-width: 500px;
     }
 </style>
-
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+{
 <div>
     <input type="button" class="btn btn-update" value="Update" onclick="@("window.location.href='" + @Url.Action("UpdateLandMark", "ManageLandmarks") + "?terrainid=" + Model.ID + "'");" />
     <input type="button" class="btn btn-delete" value="Delete" onclick="@("window.location.href='" + @Url.Action("DeleteLandMark", "ManageLandmarks") + "'");" />
 </div>
+}
 
 <style>
     .btn-update, .btn-delete{

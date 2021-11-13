@@ -1,4 +1,5 @@
 ﻿using LandMarkBLL;
+using LandMarkBLL.DTO;
 using LandMarkBLL.EmailOperations;
 using LandmarkDAL.Models.Users;
 using Microsoft.AspNetCore.Authentication;
@@ -34,6 +35,15 @@ namespace LandmarksPresentation.Controllers
                     new Claim(ClaimTypes.Name, users.Username),
                     new Claim(ClaimTypes.Email, "Anatoliy@test.com"),
                 };
+
+                UserBLL userBLL = new UserBLL();
+                UserRoleDto roleDto = new UserRoleDto();
+                roleDto = userBLL.GetUserRoles(users.Username);
+
+                foreach (Role r in roleDto.Roles)
+                {
+                    userClaims.Add(new Claim(ClaimTypes.Role, r.RoleName));
+                }
 
                 var AnatoliyIdentity = new ClaimsIdentity(userClaims, "User Identity");
 

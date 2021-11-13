@@ -1,4 +1,5 @@
-﻿using LandmarkDAL.DAO;
+﻿using LandMarkBLL.DTO;
+using LandmarkDAL.DAO;
 using LandmarkDAL.Models.Users;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,21 @@ namespace LandMarkBLL
 
             UserRoleMappingsDAO urlDAO = new UserRoleMappingsDAO();
             urlDAO.Insert(url);
+        }
+
+        public UserRoleDto GetUserRoles(string Username)
+        {
+            UserRoleDto userRoleDto = new UserRoleDto();
+            LandmarkDAL.DAO.Context.LandmarkContext context = new LandmarkDAL.DAO.Context.LandmarkContext();
+            Users user = context.Users.FirstOrDefault(u => u.Username == Username);
+
+
+
+            userRoleDto.Roles = context.Roles
+                .Where(r => context.Mappings.Any
+                (urm => urm.RoleID == r.ID && urm.UserID == user.ID)).ToList();
+
+            return userRoleDto;
         }
     }
 }

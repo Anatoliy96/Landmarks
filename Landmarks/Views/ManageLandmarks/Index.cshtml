@@ -1,10 +1,10 @@
 ﻿<h1>Add Landmark</h1>
 
 @using (Html.BeginForm("InsertLandMarks", "ManageLandmarks", FormMethod.Post,
-                          new { enctype = "multipart/form-data", @class="form"}))
+                         new { enctype = "multipart/form-data", @class = "form" }))
 {
     <label for="picturepath">Upload Image:</label>
-    <input type="file"  accept=".gif,.jpg,.jpeg,.png,.bmp" name="picturepath" id="picturepath" style="width: 100%;" />
+    <input type="file" accept=".gif,.jpg,.jpeg,.png,.bmp" name="picturepath" id="picturepath" style="width: 100%;" />
     <div class="mb-3">
         <label for="InputName" class="form-label">Name</label>
         <input type="text" class="form-control" id="InputName" name="name" aria-describedby="NameHelp">
@@ -72,11 +72,13 @@
         border-radius: 5px;
         box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
     }
+
     h1 {
         padding: 0;
         color: #fff;
         text-align: center;
     }
+
     .form-label {
         top: 0;
         left: 0;
@@ -86,6 +88,7 @@
         pointer-events: none;
         transition: .5s;
     }
+
     .btn-primary {
         margin-top: 10px;
     }
