@@ -41,7 +41,7 @@ namespace Landmarks
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddDbContext<LandmarkDAL.DAO.Context.LandmarkContext>(options => {
-                options.UseMySQL("Server=127.0.0.1;Database=landmarks;Uid=root;Pwd=root");
+                options.UseSqlServer("Server=DESKTOP-7TAP9Q7\\SQLEXPRESS; Database=Landmarks;Trusted_Connection=True;");
             });
         }
 

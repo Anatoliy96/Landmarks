@@ -21,7 +21,7 @@ namespace LandmarkDAL.DAO.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=localhost;database=Landmarks;user=root;password=root", b => b.MigrationsAssembly("LandmarksPresentation"));
+            optionsBuilder.UseSqlServer("Server=DESKTOP-7TAP9Q7\\SQLEXPRESS; Database=Landmarks;Trusted_Connection=True;", b => b.MigrationsAssembly("LandmarksPresentation"));
             
         }
 
